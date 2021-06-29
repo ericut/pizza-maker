@@ -5,7 +5,7 @@ import { Box } from '@chakra-ui/react';
 // imagens
 import PizzaStoomTheme from './theme/index';
 // pagina
-import FirstPage from './pages/FirstPage/FirstPage';
+import MonteSuaPizza from './pages/MonteSuaPizza/MonteSuaPizza';
 // componentes
 import Header from './components/Header/Header';
 
@@ -16,7 +16,7 @@ const App = () => {
         <Box h="100vh" maxW="100%">
           <Header />
           <Switch>
-            <Route exact path="/" component={FirstPage}></Route>
+            <Route exact path="/" component={MonteSuaPizza}></Route>
           </Switch>
         </Box>
       </BrowserRouter>

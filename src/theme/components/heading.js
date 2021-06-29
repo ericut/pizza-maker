@@ -1,7 +1,7 @@
 const Heading = {
   baseStyle: {
     color: 'terciary.900',
-    fontFamily: 'Metropolis',
+    fontFamily: 'Roboto',
   },
   sizes: {
     md: {

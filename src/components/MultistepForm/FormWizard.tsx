@@ -3,6 +3,9 @@
 //
 import { useEffect, useState } from 'react';
 import { Flex, Box } from '@chakra-ui/react';
+// icones
+import { FaCheck } from 'react-icons/fa';
+import { AiFillCrown } from 'react-icons/ai';
 
 interface IFormWizardProps {
   registeredSteps: Array<any>;
@@ -30,19 +33,17 @@ export function useWizardSteps({ initialStep }: IStepsControlProps) {
 export default function FormWizard({ registeredSteps, activeStep }: IFormWizardProps) {
   const [activeStepChange, setActiveStepChange] = useState(activeStep);
 
-  const maxRegisteredSteps = registeredSteps.length;
+  const maxRegisteredStep = registeredSteps.length;
   const finishedSteps = registeredSteps.length + 1;
 
   useEffect(() => {
     setActiveStepChange(activeStep);
   }, [activeStep]);
 
-  function stepGoToStep(level: number) {
-    setActiveStepChange(level);
-  }
-
   function stepColorStatus(level: number) {
-    if (level === activeStepChange) {
+    if (activeStepChange === maxRegisteredStep) {
+      return 'green.500';
+    } else if (level === activeStepChange) {
       return 'orange.500';
     } else if (level > activeStepChange) {
       return 'primary.100';
@@ -54,14 +55,16 @@ export default function FormWizard({ registeredSteps, activeStep }: IFormWizardP
   }
 
   function stepColorBar(level: number) {
-    if (level === activeStepChange - 1) {
-      return 'linear(to-r, green.500, orange.500)';
+    if (activeStepChange === maxRegisteredStep) {
+      return 'green.500';
+    } else if (level === activeStepChange - 1) {
+      return 'orange.500';
     } else if (level === activeStepChange) {
-      return 'linear(to-r, orange.500, primary.50)';
+      return 'orange.100';
     } else if (level < activeStepChange) {
-      return 'linear(to-r, green.500, green.500)';
+      return 'green.500';
     } else if (level > activeStepChange) {
-      return 'linear(to-r, primary.50, primary.50)';
+      return 'primary.50';
     }
   }
 
@@ -87,16 +90,62 @@ export default function FormWizard({ registeredSteps, activeStep }: IFormWizardP
                 position="relative"
                 textAlign="center"
                 w="300px"
-                onClick={() => stepGoToStep(level)}
               >
                 <Box h="1px"></Box>
-                <Box w="18px" h="18px" bg={stepColorStatus(level)} borderRadius="full" transition="0.5s all"></Box>
-                <Box h="26px" fontSize="12px">
+                {level < activeStep ? (
+                  <Flex w="20px" h="20px" color="white" alignItems="center" justifyContent="center">
+                    <Flex
+                      w="20px"
+                      h="20px"
+                      alignItems="center"
+                      justifyContent="center"
+                      bg={stepColorStatus(level)}
+                      borderRadius="full"
+                      transition="0.5s all"
+                      fontSize="12px"
+                      color="white"
+                    >
+                      <FaCheck />
+                    </Flex>
+                  </Flex>
+                ) : activeStep === maxRegisteredStep ? (
+                  <Flex w="20px" h="20px" color="white" alignItems="center" justifyContent="center">
+                    <Flex
+                      w="20px"
+                      h="20px"
+                      alignItems="center"
+                      justifyContent="center"
+                      bg={stepColorStatus(level)}
+                      borderRadius="full"
+                      transition="0.5s all"
+                    >
+                      <AiFillCrown />
+                    </Flex>
+                  </Flex>
+                ) : (
+                  <Flex w="20px" h="20px" color="white" alignItems="center" justifyContent="center">
+                    <Flex
+                      w="18px"
+                      h="18px"
+                      bg={stepColorStatus(level)}
+                      borderRadius="full"
+                      transition="0.5s all"
+                    ></Flex>
+                  </Flex>
+                )}
+                <Box h="26px" fontSize="12px" transition="0.5s all" fontWeight={activeStep === level ? 'bold' : ''}>
                   {label}
                 </Box>
               </Flex>
               {level !== registeredSteps[registeredSteps.length - 1].level ? (
-                <Box w="100%" mt="-25px" h="6px" bgGradient={stepColorBar(level)} transition="0.5s all"></Box>
+                <Box
+                  w="35%"
+                  mt="-25px"
+                  h="6px"
+                  borderTop="6px dotted"
+                  borderColor={stepColorBar(level)}
+                  transition="0.5s all"
+                ></Box>
               ) : (
                 ''
               )}
