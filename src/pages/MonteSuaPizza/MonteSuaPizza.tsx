@@ -1,26 +1,35 @@
 import { useEffect, useState, useMemo } from 'react';
 // chakra provider
-import { Container, Flex, Heading, Box, Button } from '@chakra-ui/react';
+import { Container, Flex, Heading, Box, Button, HStack, useToast } from '@chakra-ui/react';
 // componentes
 import FormWizard from '../../components/MultistepForm/FormWizard';
 // icones
 import { BsChevronBarRight, BsChevronBarLeft } from 'react-icons/bs';
 // step pages
 import TamanhoPizza from './Steps/01Tamanho';
+import TipoMassaPizza from './Steps/02TipoMassa';
+import SaborPizza from './Steps/03Sabor';
+import BordaRecheada from './Steps/04BordaRecheada';
 
 export default function MonteSuaPizza() {
+  const toast = useToast();
   const [pageTitle] = useState('Monte Sua Pizza');
   const [activeStep, setActiveStep] = useState(1);
   const [actualStepLabel, setActualStepLabel] = useState('');
 
+  const [objSaborSelecionado, setObjSaborSelecionado] = useState({});
+
   const [tamanhoPizza, setTamanhoPizza] = useState('');
+  const [tipoMassaPizza, setTipoMassaPizza] = useState('');
+  const [saborPizza, setSaborPizza] = useState('');
+  const [bordaRecheada, setBordaRecheada] = useState('');
 
   const [registeredSteps] = useState([
     { level: 1, label: 'Tamanho da Pizza' },
     { level: 2, label: 'Tipo da Massa' },
     { level: 3, label: 'Sabor da Pizza' },
     { level: 4, label: 'Borda Recheada' },
-    { level: 5, label: 'Finalizado' },
+    { level: 5, label: 'Finalizar' },
   ]);
 
   useEffect(() => {
@@ -36,15 +45,50 @@ export default function MonteSuaPizza() {
   }, [activeStep, registeredSteps]);
 
   useEffect(() => {
-    console.log('tamanho', tamanhoPizza);
-  }, [tamanhoPizza]);
+    console.log('OBJ', objSaborSelecionado);
+  }, [objSaborSelecionado]);
 
   function handlePrevStep() {
     setActiveStep(activeStep - 1);
   }
 
   function handleNextStep() {
-    setActiveStep(activeStep + 1);
+    if (activeStep === 1) {
+      if (tamanhoPizza) {
+        setActiveStep(activeStep + 1);
+      } else {
+        toast({
+          status: 'warning',
+          title: 'Por favor, selecione o tamanho da pizza!',
+          isClosable: true,
+          duration: 3000,
+        });
+      }
+    } else if (activeStep === 2) {
+      if (tipoMassaPizza) {
+        setActiveStep(activeStep + 1);
+      } else {
+        toast({
+          status: 'warning',
+          title: 'Por favor, selecione o tipo da massa!',
+          isClosable: true,
+          duration: 3000,
+        });
+      }
+    } else if (activeStep === 3) {
+      if (saborPizza) {
+        setActiveStep(activeStep + 1);
+      } else {
+        toast({
+          status: 'warning',
+          title: 'Por favor, selecione o sabor da sua pizza!',
+          isClosable: true,
+          duration: 3000,
+        });
+      }
+    } else if (activeStep === 4) {
+      setActiveStep(activeStep + 1);
+    }
   }
 
   function handleFinalStep() {
@@ -52,13 +96,65 @@ export default function MonteSuaPizza() {
   }
 
   const stepPizzaRendered = useMemo(() => {
-    if (activeStep === 1) {
-      return <TamanhoPizza setTamanhoPizza={setTamanhoPizza} />;
+    switch (activeStep) {
+      case 1:
+        return <TamanhoPizza setTamanhoPizza={setTamanhoPizza} tamanhoPizzaSelecionado={tamanhoPizza} />;
+      case 2:
+        return <TipoMassaPizza setTipoMassaPizza={setTipoMassaPizza} tipoMassaSelecionado={tipoMassaPizza} />;
+      case 3:
+        return (
+          <SaborPizza
+            setSaborPizza={setSaborPizza}
+            saborSelecionado={saborPizza}
+            setObjSaborSelecionado={setObjSaborSelecionado}
+          />
+        );
+      case 4:
+        return <BordaRecheada setBordaRecheada={setBordaRecheada} bordaSelecionado={bordaRecheada} />;
     }
-  }, [activeStep]);
+  }, [activeStep, tamanhoPizza, tipoMassaPizza, saborPizza, bordaRecheada]);
 
   return (
-    <Container maxW="100%" h="80vh" p="0">
+    <Container maxW="100%" h="80vh" p="0 0 20px 0">
+      <Flex
+        justifyContent="center"
+        bg="orange.500"
+        color="white"
+        fontSize="14px"
+        letterSpacing="-0.2px"
+        transition="1s all"
+      >
+        <HStack>
+          {tamanhoPizza ? (
+            <Box p="4px 6px" bg="orange.800">
+              Tamanho: {tamanhoPizza}
+            </Box>
+          ) : (
+            ''
+          )}
+          {tipoMassaPizza ? (
+            <Box p="4px 6px" bg="orange.800">
+              Massa: {tipoMassaPizza}
+            </Box>
+          ) : (
+            ''
+          )}
+          {saborPizza ? (
+            <Box p="4px 6px" bg="orange.800">
+              Sabor: {saborPizza}
+            </Box>
+          ) : (
+            ''
+          )}
+          {bordaRecheada ? (
+            <Box p="4px 6px" bg="orange.800">
+              Borda: {bordaRecheada}
+            </Box>
+          ) : (
+            ''
+          )}
+        </HStack>
+      </Flex>
       <Box
         w="100%"
         minH={{ lg: '70vh', md: '70vh', sm: '66vh' }}
@@ -104,7 +200,7 @@ export default function MonteSuaPizza() {
         </Flex>
       </Box>
       {/* controles */}
-      <Box pt="40px" px={{ lg: '15%', md: '5%', sm: '5%' }}>
+      <Box pt="20px" pb="30px" px={{ lg: '15%', md: '5%', sm: '5%' }}>
         <Flex alignItems="center" justifyContent="space-between">
           {activeStep === 1 ? (
             <Box></Box>
@@ -115,7 +211,7 @@ export default function MonteSuaPizza() {
           )}
           {registeredSteps.length === activeStep ? (
             <Button onClick={() => handleFinalStep()} bg="green.500">
-              Finalizar
+              Finalizar Pedido
             </Button>
           ) : (
             <Button onClick={() => handleNextStep()}>Próximo</Button>

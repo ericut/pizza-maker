@@ -5,8 +5,8 @@ import { Flex, useRadio, useRadioGroup, Box, HStack } from '@chakra-ui/react';
 import Service from '../../../service/pizzaMenuService.js';
 
 interface IPageProps {
-  tamanhoPizzaSelecionado: string;
-  setTamanhoPizza: (value: string) => void;
+  tipoMassaSelecionado: string;
+  setTipoMassaPizza: (value: string) => void;
 }
 
 interface IServiceProps {
@@ -14,29 +14,29 @@ interface IServiceProps {
   tipo: string;
 }
 
-export default function TamanhoPizza({ setTamanhoPizza, tamanhoPizzaSelecionado }: IPageProps) {
-  const [listagemTamanho, setListagemTamanho] = useState<Array<IServiceProps>>([]);
+export default function TipoMassaPizza({ setTipoMassaPizza, tipoMassaSelecionado }: IPageProps) {
+  const [listagemTipoMassa, setListagemTipoMassa] = useState<Array<IServiceProps>>([]);
 
   const { getRootProps, getRadioProps } = useRadioGroup({
-    name: 'tamanho-pizza',
-    defaultValue: tamanhoPizzaSelecionado || '',
-    onChange: selecionarTamanho,
+    name: 'tipomassa-pizza',
+    defaultValue: tipoMassaSelecionado || '',
+    onChange: selecionarTipoMassa,
   });
   const radioProvGroup = getRootProps();
 
   useEffect(() => {
-    buscarTamanhoPizza();
+    buscarTipoMassaPizza();
   }, []);
 
-  async function buscarTamanhoPizza() {
-    const response = await Service.tamanhoListar();
+  async function buscarTipoMassaPizza() {
+    const response = await Service.tipoMassaListar();
     if (response.status === 200) {
-      setListagemTamanho(response.data.content);
+      setListagemTipoMassa(response.data.content);
     }
   }
 
-  function selecionarTamanho(value: string) {
-    setTamanhoPizza(value);
+  function selecionarTipoMassa(value: string) {
+    setTipoMassaPizza(value);
   }
 
   const OptionToSelect = (props: any) => {
@@ -74,7 +74,7 @@ export default function TamanhoPizza({ setTamanhoPizza, tamanhoPizzaSelecionado 
   return (
     <Flex w="100%" alignItems="center" justifyContent="space-between">
       <HStack justifyContent="center" w="100%" {...radioProvGroup}>
-        {listagemTamanho.map((item) => {
+        {listagemTipoMassa.map((item) => {
           let value = item.tipo;
           const radio = getRadioProps({ value });
           return (
