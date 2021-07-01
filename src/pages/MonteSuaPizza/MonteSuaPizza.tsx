@@ -227,7 +227,8 @@ export default function MonteSuaPizza(props: any) {
         </Flex>
         <Box
           w="100%"
-          minH={{ lg: '70vh', md: '70vh', sm: '66vh' }}
+          minH={{ lg: '40vh', md: '40vh', sm: '66vh' }}
+          pb="40px"
           bgGradient="linear(to-tr, white, gray.100)"
           boxShadow="sm"
           px="10px"
