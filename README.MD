@@ -10,6 +10,6 @@ Para instalar as dependências do React:
 Para iniciar o projeto no localhost
 `npm run start`
 
-### WIP
+### Backlog
 
-WIP
+Mais informações do que foi utilizado e feito no backlog.md
