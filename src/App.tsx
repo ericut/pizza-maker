@@ -6,17 +6,16 @@ import { Box } from '@chakra-ui/react';
 import PizzaStoomTheme from './theme/index';
 // pagina
 import MonteSuaPizza from './pages/MonteSuaPizza/MonteSuaPizza';
-// componentes
-import Header from './components/Header/Header';
+import Home from './pages/Home/Home';
 
 const App = () => {
   return (
     <ChakraProvider resetCSS={true} theme={PizzaStoomTheme}>
       <BrowserRouter>
         <Box h="100vh" maxW="100%">
-          <Header />
           <Switch>
-            <Route exact path="/" component={MonteSuaPizza}></Route>
+            <Route exact path="/" component={Home}></Route>
+            <Route exact path="/montesuapizza" component={MonteSuaPizza}></Route>
           </Switch>
         </Box>
       </BrowserRouter>

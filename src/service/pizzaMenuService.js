@@ -2,14 +2,17 @@ let tamanhoPizza = [
   {
     id: 1,
     tipo: 'Broto',
+    variante: 0.6,
   },
   {
     id: 2,
     tipo: 'Normal',
+    variante: 1,
   },
   {
     id: 3,
     tipo: 'Gigante',
+    variante: 1.4,
   },
 ];
 
@@ -110,7 +113,7 @@ let bordaRecheada = [
   {
     id: 2,
     tipo: 'Catupiry',
-    valor: 10,
+    valor: 12,
   },
   {
     id: 3,
@@ -120,13 +123,19 @@ let bordaRecheada = [
   {
     id: 4,
     tipo: 'Calabresa',
-    valor: 10,
+    valor: 15,
   },
 ];
 
 const Service = {
   tamanhoListar: async () => {
     return await Promise.resolve({ status: 200, data: { content: tamanhoPizza, success: true, error_message: null } });
+  },
+  tamanhoBuscar: async (tipo) => {
+    return await Promise.resolve({
+      status: 200,
+      data: { content: tamanhoPizza.find((item) => item.tipo === tipo), success: true, error_message: null },
+    });
   },
   tipoMassaListar: async () => {
     return await Promise.resolve({
@@ -146,10 +155,22 @@ const Service = {
       data: { content: saborPizza.find((item) => item.nome === nome), success: true, error_message: null },
     });
   },
+  saborDoDiaBuscar: async () => {
+    return await Promise.resolve({
+      status: 200,
+      data: { content: saborPizza.find((item) => item.pizzadodia === true), success: true, error_message: null },
+    });
+  },
   bordaListar: async () => {
     return await Promise.resolve({
       status: 200,
       data: { content: bordaRecheada, success: true, error_message: null },
+    });
+  },
+  bordaBuscar: async (tipo) => {
+    return await Promise.resolve({
+      status: 200,
+      data: { content: bordaRecheada.find((item) => item.tipo === tipo), success: true, error_message: null },
     });
   },
 };

@@ -10,6 +10,7 @@ interface IPageProps {
   saborSelecionado: string;
   setSaborPizza: (value: string) => void;
   setObjSaborSelecionado: any;
+  objTamanhoPizzaSelecionado: any;
 }
 
 interface IServiceProps {
@@ -21,7 +22,12 @@ interface IServiceProps {
   pizzadodia: boolean;
 }
 
-export default function SaborPizza({ setSaborPizza, saborSelecionado, setObjSaborSelecionado }: IPageProps) {
+export default function SaborPizza({
+  setSaborPizza,
+  saborSelecionado,
+  setObjSaborSelecionado,
+  objTamanhoPizzaSelecionado,
+}: IPageProps) {
   const [listagemSabor, setListagemSabor] = useState<Array<IServiceProps>>([]);
 
   const { getRootProps, getRadioProps } = useRadioGroup({
@@ -37,7 +43,7 @@ export default function SaborPizza({ setSaborPizza, saborSelecionado, setObjSabo
 
   useEffect(() => {
     buscarSaborEspecifico(saborSelecionado);
-  }, [saborSelecionado]);
+  });
 
   async function buscarSaborPizza() {
     const response = await Service.saborListar();
@@ -100,6 +106,13 @@ export default function SaborPizza({ setSaborPizza, saborSelecionado, setObjSabo
               {item.nome === saborSelecionado ? (
                 <Flex flexDirection="column" alignItems="center" px="5px" position="relative">
                   <Text bg="green.700" w="90%" mt="-10px" p="5px" fontWeight="bold" mb="5px">
+                    {item.pizzadodia ? (
+                      <Text mt="-10px" left="5px" bg="orange.900" p="5px" fontWeight="bold" mb="5px">
+                        Pizza do dia!
+                      </Text>
+                    ) : (
+                      ''
+                    )}
                     {item.nome}
                   </Text>
                   <Text fontSize="15px" pt="5px">
@@ -121,9 +134,9 @@ export default function SaborPizza({ setSaborPizza, saborSelecionado, setObjSabo
                     <Box color="orange.500">
                       <AiFillCrown />
                     </Box>
-                    {item.pontuacao}
+                    {item.pizzadodia ? item.pontuacao * 2 : item.pontuacao}
                     <Box fontSize="10px" fontWeight="normal" color="white" pl="5px">
-                      StoomPoints
+                      {item.pizzadodia ? 'StoomPoints em Dobro!' : 'StoomPoints'}
                     </Box>
                   </Flex>
                   <Flex
@@ -146,12 +159,19 @@ export default function SaborPizza({ setSaborPizza, saborSelecionado, setObjSabo
                     >
                       R$
                     </Flex>
-                    {item.valor}
+                    {Math.floor(item.valor * objTamanhoPizzaSelecionado.variante)}
                   </Flex>
                 </Flex>
               ) : (
                 <Flex flexDirection="column" alignItems="center" px="5px" position="relative">
                   <Text bg="orange.600" color="white" w="90%" mt="-10px" p="5px" fontWeight="bold" mb="5px">
+                    {item.pizzadodia ? (
+                      <Text color="white" mt="-10px" left="5px" bg="orange.900" p="5px" fontWeight="bold" mb="5px">
+                        Pizza do dia!
+                      </Text>
+                    ) : (
+                      ''
+                    )}
                     {item.nome}
                   </Text>
                   <Text fontSize="15px" pt="5px">
@@ -172,9 +192,9 @@ export default function SaborPizza({ setSaborPizza, saborSelecionado, setObjSabo
                     <Box color="orange.500">
                       <AiFillCrown />
                     </Box>
-                    {item.pontuacao}
+                    {item.pizzadodia ? item.pontuacao * 2 : item.pontuacao}
                     <Box fontSize="10px" fontWeight="normal" color="orange.500" pl="5px">
-                      StoomPoints
+                      {item.pizzadodia ? 'StoomPoints em Dobro!' : 'StoomPoints'}
                     </Box>
                   </Flex>
                   <Flex
@@ -197,7 +217,7 @@ export default function SaborPizza({ setSaborPizza, saborSelecionado, setObjSabo
                     >
                       R$
                     </Flex>
-                    {item.valor}
+                    {Math.floor(item.valor * objTamanhoPizzaSelecionado.variante)}
                   </Flex>
                 </Flex>
               )}

@@ -7,6 +7,7 @@ import Service from '../../../service/pizzaMenuService.js';
 interface IPageProps {
   tamanhoPizzaSelecionado: string;
   setTamanhoPizza: (value: string) => void;
+  setObjTamanhoPizzaSelecionado: any;
 }
 
 interface IServiceProps {
@@ -14,7 +15,11 @@ interface IServiceProps {
   tipo: string;
 }
 
-export default function TamanhoPizza({ setTamanhoPizza, tamanhoPizzaSelecionado }: IPageProps) {
+export default function TamanhoPizza({
+  setTamanhoPizza,
+  tamanhoPizzaSelecionado,
+  setObjTamanhoPizzaSelecionado,
+}: IPageProps) {
   const [listagemTamanho, setListagemTamanho] = useState<Array<IServiceProps>>([]);
 
   const { getRootProps, getRadioProps } = useRadioGroup({
@@ -28,10 +33,21 @@ export default function TamanhoPizza({ setTamanhoPizza, tamanhoPizzaSelecionado 
     buscarTamanhoPizza();
   }, []);
 
+  useEffect(() => {
+    buscarTamanhoEspecifico(tamanhoPizzaSelecionado);
+  });
+
   async function buscarTamanhoPizza() {
     const response = await Service.tamanhoListar();
     if (response.status === 200) {
       setListagemTamanho(response.data.content);
+    }
+  }
+
+  async function buscarTamanhoEspecifico(tipo: string) {
+    const response = await Service.tamanhoBuscar(tipo);
+    if (response.status === 200) {
+      setObjTamanhoPizzaSelecionado(response.data.content);
     }
   }
 

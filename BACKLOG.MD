@@ -15,7 +15,7 @@
 
 - Formulário será um componente de Multistep Form controlado com hooks interno
 - O Mockup do backend será criado como service in promises
-- Será utilizado localStorage para guardar dados do usuário e da pontuação
+- Será utilizado localStorage para guardar a no header pontuação
 
 ### Base de dados
 
