@@ -35,7 +35,7 @@ export default function PizzaDoDia({
   setObjSaborSelecionado,
   activeStep,
 }: IPageProps) {
-  const [pizzaDoDia, setPizzaDoDia] = useState<IServiceProps>({
+  const [pizzaDoDia, setPizzaDoDia] = useState<IServiceProps | undefined>({
     id: 0,
     nome: '',
     descricao: '',
@@ -67,7 +67,6 @@ export default function PizzaDoDia({
   async function buscarPizzaDoDia() {
     const response = await Service.saborDoDiaBuscar();
     if (response.status === 200) {
-      //@ts-ignore
       setPizzaDoDia(response.data.content);
     }
   }
@@ -83,7 +82,7 @@ export default function PizzaDoDia({
     setSaborPizza(value);
   }
 
-  return (
+  return pizzaDoDia ? (
     <Flex w="100%" alignItems="center" justifyContent="center" bg="primary.600" p="5px">
       <Flex flexDirection={{ lg: 'row', md: 'row', sm: 'column' }} alignItems="center" px="5px" position="relative">
         <Text bg="orange.600" color="white" fontWeight="bold" p="5px">
@@ -134,5 +133,7 @@ export default function PizzaDoDia({
         )}
       </Flex>
     </Flex>
+  ) : (
+    <></>
   );
 }

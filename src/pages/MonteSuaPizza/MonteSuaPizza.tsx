@@ -16,6 +16,25 @@ import PizzaDoDia from './Steps/00PizzaDoDia';
 // service in promises
 import Service from '../../service/userService';
 
+interface IUsuarioProps {
+  id: number;
+  name: string;
+  username: string;
+  stoompoints: number;
+}
+
+interface IPizzaProps {
+  tamanho: string;
+  massa: string;
+  sabor: string;
+  borda: string;
+  pizzadodia: boolean;
+  valorsabor: number;
+  valorborda: number;
+  valortotal: number;
+  pontuacao: number;
+}
+
 export default function MonteSuaPizza(props: any) {
   const toast = useToast();
   const [pageTitle] = useState('Monte Sua Pizza');
@@ -31,8 +50,19 @@ export default function MonteSuaPizza(props: any) {
   const [objSaborSelecionado, setObjSaborSelecionado] = useState({});
   const [objBordaSelecionado, setObjBordaSelecionado] = useState({});
 
-  const [pizzaCompleta, setPizzaCompleta] = useState({});
-  const [usuarioObj, setUsuarioObj] = useState({});
+  const [pizzaCompleta, setPizzaCompleta] = useState<IPizzaProps>({
+    tamanho: '',
+    massa: '',
+    sabor: '',
+    borda: '',
+    pizzadodia: false,
+    valorsabor: 0,
+    valorborda: 0,
+    valortotal: 0,
+    pontuacao: 0,
+  });
+
+  const [usuarioObj, setUsuarioObj] = useState<IUsuarioProps>({ id: 0, name: '', username: '', stoompoints: 0 });
 
   const [registeredSteps] = useState([
     { level: 1, label: 'Tamanho da Pizza' },
@@ -108,13 +138,11 @@ export default function MonteSuaPizza(props: any) {
       id: 1,
       username: 'username',
       nome: 'Eric Li',
-      //@ts-ignore
       stoompoints: usuarioObj.stoompoints + pizzaCompleta.pontuacao,
     };
 
     const response = await Service.usuarioCadastrar(usuario);
     if (response.status === 200) {
-      //@ts-ignore
       alert(pizzaCompleta.pontuacao + ' Pontos acumulados');
     }
     props.history.push('/', {

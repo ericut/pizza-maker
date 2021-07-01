@@ -12,8 +12,15 @@ import { AiFillCrown } from 'react-icons/ai';
 // service in promises
 import Service from '../../service/userService';
 
+interface IUsuarioProps {
+  id: number;
+  nome: string;
+  username: string;
+  stoompoints: number;
+}
+
 export default function Home(props: any) {
-  const [usuario, setUsuario] = useState({ id: Number, name: String, username: String, stoompoints: Number });
+  const [usuario, setUsuario] = useState<IUsuarioProps | undefined>({ id: 0, nome: '', username: '', stoompoints: 0 });
 
   useEffect(() => {
     buscarUsuario('username');
@@ -22,14 +29,12 @@ export default function Home(props: any) {
   async function buscarUsuario(username: string) {
     const response = await Service.usuarioBuscar(username);
     if (response.status === 200) {
-      //@ts-ignore
       setUsuario(response.data.content);
-      //@ts-ignore
-      localStorage.setItem('stoom-points', response.data.content.stoompoints + '');
+      localStorage.setItem('stoom-points', response.data.content?.stoompoints + '');
     }
   }
 
-  return (
+  return usuario ? (
     <Box
       bgImage={{ lg: BgImage, md: BgImage, sm: '' }}
       w="100%"
@@ -85,5 +90,7 @@ export default function Home(props: any) {
         </Button>
       </Flex>
     </Box>
+  ) : (
+    <></>
   );
 }
