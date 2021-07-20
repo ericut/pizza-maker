@@ -34,7 +34,7 @@ export default function Home(props: any) {
     }
   }
 
-  return usuario ? (
+  return (
     <Box
       bgImage={{ lg: BgImage, md: BgImage, sm: '' }}
       w="100%"
@@ -71,7 +71,7 @@ export default function Home(props: any) {
           <Box h="30px" w="1px" opacity="0.5" bg="white" mx="10px" />
           <Flex alignItems="center">
             <Box border="1px solid" borderColor="orange.600" fontWeight="bold" p="5px" mr="3px" borderRadius="6px">
-              {usuario.makerpoints}
+              {usuario ? usuario.makerpoints : ''}
             </Box>
             <Text fontSize="12px" color="orange.500">
               MakerPoints
@@ -90,7 +90,5 @@ export default function Home(props: any) {
         </Button>
       </Flex>
     </Box>
-  ) : (
-    <></>
   );
 }
