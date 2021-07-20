@@ -5,6 +5,8 @@
 node_modules
 dist
 .vscode
+/build
+
 
 # include package target files which may be required for msbuild,
 # again prefixing the folder name as needed.
