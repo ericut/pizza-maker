@@ -20,7 +20,7 @@ interface IUsuarioProps {
   id: number;
   name: string;
   username: string;
-  stoompoints: number;
+  makerpoints: number;
 }
 
 interface IPizzaProps {
@@ -62,7 +62,7 @@ export default function MonteSuaPizza(props: any) {
     pontuacao: 0,
   });
 
-  const [usuarioObj, setUsuarioObj] = useState<IUsuarioProps>({ id: 0, name: '', username: '', stoompoints: 0 });
+  const [usuarioObj, setUsuarioObj] = useState<IUsuarioProps>({ id: 0, name: '', username: '', makerpoints: 0 });
 
   const [registeredSteps] = useState([
     { level: 1, label: 'Tamanho da Pizza' },
@@ -138,7 +138,7 @@ export default function MonteSuaPizza(props: any) {
       id: 1,
       username: 'username',
       nome: 'Eric Li',
-      stoompoints: usuarioObj.stoompoints + pizzaCompleta.pontuacao,
+      makerpoints: usuarioObj.makerpoints + pizzaCompleta.pontuacao,
     };
 
     const response = await Service.usuarioCadastrar(usuario);

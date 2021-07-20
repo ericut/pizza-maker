@@ -6,17 +6,17 @@ import { useState, useEffect } from 'react';
 // chakra
 import { Box, Flex, Image, Text } from '@chakra-ui/react';
 // imagens
-import Logo from '../../assets/img/pizzastoom_logo.png';
+import Logo from '../../assets/img/pizzamaker_logo.png';
 import BgImage from '../../assets/img/pizza_bg.jpg';
 // icones
 import { AiFillCrown } from 'react-icons/ai';
 
 export default function Header() {
-  const [stoomPoints, setStoomPoints] = useState<string>('');
+  const [makerPoints, setMakerPoints] = useState<string>('');
 
   useEffect(() => {
-    let stoomPointsShow = localStorage.getItem('stoom-points');
-    setStoomPoints(String(stoomPointsShow));
+    let makerPointsShow = localStorage.getItem('maker-points');
+    setMakerPoints(String(makerPointsShow));
   }, []);
 
   return (
@@ -56,10 +56,10 @@ export default function Header() {
           <Box h="30px" w="1px" opacity="0.5" bg="white" mx="10px" />
           <Flex alignItems="center">
             <Box border="1px solid" borderColor="orange.600" fontWeight="bold" p="5px" mr="3px" borderRadius="6px">
-              {stoomPoints}
+              {makerPoints}
             </Box>
             <Text fontSize="12px" color="orange.500">
-              StoomPoints
+              MakerPoints
             </Text>
           </Flex>
         </Flex>

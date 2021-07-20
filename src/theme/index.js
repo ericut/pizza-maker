@@ -10,7 +10,7 @@ import breakpoints from './foundations/breakpoints';
 import Button from './components/button';
 import Heading from './components/heading';
 
-const PizzaStoomTheme = extendTheme({
+const PizzaMakerTheme = extendTheme({
   styles,
   colors,
   fonts,
@@ -21,4 +21,4 @@ const PizzaStoomTheme = extendTheme({
   },
 });
 
-export default PizzaStoomTheme;
+export default PizzaMakerTheme;

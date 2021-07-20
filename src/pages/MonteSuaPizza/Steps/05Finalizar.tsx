@@ -163,7 +163,7 @@ export default function FinalizarPizza({
           </Box>
           {pizzaMontada.pontuacao}
           <Box fontSize="12px" fontWeight="normal" color="orange.500" pl="5px">
-            StoomPoints
+            MakerPoints
           </Box>
         </Flex>
       </Box>

@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 // chakra
 import { Box, Flex, Image, Text, Button } from '@chakra-ui/react';
 // imagens
-import Logo from '../../assets/img/pizzastoom_logo.png';
+import Logo from '../../assets/img/pizzamaker_logo.png';
 import BgImage from '../../assets/img/pizza_bg.jpg';
 // icones
 import { AiFillCrown } from 'react-icons/ai';
@@ -16,11 +16,11 @@ interface IUsuarioProps {
   id: number;
   nome: string;
   username: string;
-  stoompoints: number;
+  makerpoints: number;
 }
 
 export default function Home(props: any) {
-  const [usuario, setUsuario] = useState<IUsuarioProps | undefined>({ id: 0, nome: '', username: '', stoompoints: 0 });
+  const [usuario, setUsuario] = useState<IUsuarioProps | undefined>({ id: 0, nome: '', username: '', makerpoints: 0 });
 
   useEffect(() => {
     buscarUsuario('username');
@@ -30,7 +30,7 @@ export default function Home(props: any) {
     const response = await Service.usuarioBuscar(username);
     if (response.status === 200) {
       setUsuario(response.data.content);
-      localStorage.setItem('stoom-points', response.data.content?.stoompoints + '');
+      localStorage.setItem('maker-points', response.data.content?.makerpoints + '');
     }
   }
 
@@ -71,10 +71,10 @@ export default function Home(props: any) {
           <Box h="30px" w="1px" opacity="0.5" bg="white" mx="10px" />
           <Flex alignItems="center">
             <Box border="1px solid" borderColor="orange.600" fontWeight="bold" p="5px" mr="3px" borderRadius="6px">
-              {usuario.stoompoints}
+              {usuario.makerpoints}
             </Box>
             <Text fontSize="12px" color="orange.500">
-              StoomPoints
+              MakerPoints
             </Text>
           </Flex>
         </Flex>

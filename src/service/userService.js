@@ -3,7 +3,7 @@ let usuarios = [
     id: 1,
     username: 'username',
     nome: 'Eric Li',
-    stoompoints: 0,
+    makerpoints: 0,
   },
 ];
 
@@ -27,7 +27,7 @@ const Service = {
           novoItem.id = item.id;
           novoItem.username = item.username;
           novoItem.nome = item.nome;
-          novoItem.stoompoints = item.stoompoints;
+          novoItem.makerpoints = item.makerpoints;
         }
         return null;
       });

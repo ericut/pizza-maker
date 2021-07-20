@@ -3,14 +3,14 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Box } from '@chakra-ui/react';
 // imagens
-import PizzaStoomTheme from './theme/index';
+import PizzaMakerTheme from './theme/index';
 // pagina
 import MonteSuaPizza from './pages/MonteSuaPizza/MonteSuaPizza';
 import Home from './pages/Home/Home';
 
 const App = () => {
   return (
-    <ChakraProvider resetCSS={true} theme={PizzaStoomTheme}>
+    <ChakraProvider resetCSS={true} theme={PizzaMakerTheme}>
       <BrowserRouter>
         <Box h="100vh" maxW="100%">
           <Switch>

@@ -121,7 +121,7 @@ export default function PizzaDoDia({
           </Box>
           {pizzaDoDia.pontuacao * 2}
           <Box fontSize="10px" fontWeight="normal" color="white" pl="5px">
-            StoomPoints
+            MakerPoints
           </Box>
         </Flex>
         {activeStep !== 3 ? (

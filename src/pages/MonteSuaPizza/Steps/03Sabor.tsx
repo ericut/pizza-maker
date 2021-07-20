@@ -136,7 +136,7 @@ export default function SaborPizza({
                     </Box>
                     {item.pizzadodia ? item.pontuacao * 2 : item.pontuacao}
                     <Box fontSize="10px" fontWeight="normal" color="white" pl="5px">
-                      {item.pizzadodia ? 'StoomPoints em Dobro!' : 'StoomPoints'}
+                      {item.pizzadodia ? 'MakerPoints em Dobro!' : 'MakerPoints'}
                     </Box>
                   </Flex>
                   <Flex
@@ -194,7 +194,7 @@ export default function SaborPizza({
                     </Box>
                     {item.pizzadodia ? item.pontuacao * 2 : item.pontuacao}
                     <Box fontSize="10px" fontWeight="normal" color="orange.500" pl="5px">
-                      {item.pizzadodia ? 'StoomPoints em Dobro!' : 'StoomPoints'}
+                      {item.pizzadodia ? 'MakerPoints em Dobro!' : 'MakerPoints'}
                     </Box>
                   </Flex>
                   <Flex
