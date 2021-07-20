@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.js": "/static/js/main.09ef0d66.chunk.js",
-    "main.js.map": "/static/js/main.09ef0d66.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.69a74e4c.js",
-    "runtime-main.js.map": "/static/js/runtime-main.69a74e4c.js.map",
-    "static/js/2.7ec6ccae.chunk.js": "/static/js/2.7ec6ccae.chunk.js",
-    "static/js/2.7ec6ccae.chunk.js.map": "/static/js/2.7ec6ccae.chunk.js.map",
-    "index.html": "/index.html",
-    "static/js/2.7ec6ccae.chunk.js.LICENSE.txt": "/static/js/2.7ec6ccae.chunk.js.LICENSE.txt",
-    "static/media/pizza_bg.dc35a79d.jpg": "/static/media/pizza_bg.dc35a79d.jpg"
+    "main.js": "/pizza-maker/static/js/main.09ef0d66.chunk.js",
+    "main.js.map": "/pizza-maker/static/js/main.09ef0d66.chunk.js.map",
+    "runtime-main.js": "/pizza-maker/static/js/runtime-main.61d86ad5.js",
+    "runtime-main.js.map": "/pizza-maker/static/js/runtime-main.61d86ad5.js.map",
+    "static/js/2.7ec6ccae.chunk.js": "/pizza-maker/static/js/2.7ec6ccae.chunk.js",
+    "static/js/2.7ec6ccae.chunk.js.map": "/pizza-maker/static/js/2.7ec6ccae.chunk.js.map",
+    "index.html": "/pizza-maker/index.html",
+    "static/js/2.7ec6ccae.chunk.js.LICENSE.txt": "/pizza-maker/static/js/2.7ec6ccae.chunk.js.LICENSE.txt",
+    "static/media/pizza_bg.dc35a79d.jpg": "/pizza-maker/static/media/pizza_bg.dc35a79d.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.69a74e4c.js",
+    "static/js/runtime-main.61d86ad5.js",
     "static/js/2.7ec6ccae.chunk.js",
     "static/js/main.09ef0d66.chunk.js"
   ]
