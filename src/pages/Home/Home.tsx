@@ -67,11 +67,11 @@ export default function Home(props: any) {
           <Text color="orange.500" px="5px">
             <AiFillCrown />
           </Text>
-          <Flex fontWeight="bold">Eric Li</Flex>
+          <Flex fontWeight="bold">{usuario ? usuario.nome : ''}</Flex>
           <Box h="30px" w="1px" opacity="0.5" bg="white" mx="10px" />
           <Flex alignItems="center">
             <Box border="1px solid" borderColor="orange.600" fontWeight="bold" p="5px" mr="3px" borderRadius="6px">
-              {usuario ? usuario.makerpoints : ''}
+              {usuario ? usuario.makerpoints : '0'}
             </Box>
             <Text fontSize="12px" color="orange.500">
               MakerPoints

@@ -2,7 +2,7 @@ let usuarios = [
   {
     id: 1,
     username: 'username',
-    nome: 'Eric Li',
+    nome: 'Usuário',
     makerpoints: 0,
   },
 ];
