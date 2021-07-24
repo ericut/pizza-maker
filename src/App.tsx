@@ -11,7 +11,7 @@ import Home from './pages/Home/Home';
 const App = () => {
   return (
     <ChakraProvider resetCSS={true} theme={PizzaMakerTheme}>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Box h="100vh" maxW="100%">
           <Switch>
             <Route exact path="/" component={Home}></Route>
